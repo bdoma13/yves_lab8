@@ -16,4 +16,4 @@ COPY . /app
  
 ENTRYPOINT [ "python3" ] 
 
-CMD [ "create_table_mysql.py, app.py" ] 
+CMD [ "app.py" ] 

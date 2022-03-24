@@ -58,6 +58,7 @@ services:
       - 'db'
   process: 
     image: processing
+    restart: always
     network_mode: "host"
     depends_on: 
       - 'storage'

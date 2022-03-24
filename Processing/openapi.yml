@@ -48,7 +48,7 @@ components:
         avg_age: 
           type: number 
           example: 20.2
-        total_sales: 
+        total_sale: 
           type: number 
           example: 12000.2
         num_of_ticket: 
