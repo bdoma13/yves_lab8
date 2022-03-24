@@ -1,0 +1,60 @@
+openapi: 3.0.0 
+info: 
+  description: This API receives events from a movie theater app 
+  version: "1.0.0" 
+  title: MovieTheater API 
+  contact: 
+    email: hyi10@my.bcit.ca
+tags: 
+  - name: app
+    description: Movie theater app 
+paths: 
+  /stats: 
+    get: 
+      summary: Gets the event stats 
+      operationId: app.get_stats 
+      description: get statistics
+      responses: 
+        '200': 
+          description: Successfully returned a list of blood pressure events 
+          content: 
+            application/json: 
+              schema: 
+                type: object 
+                items: 
+                  $ref: '#/components/schemas/ReadingStats' 
+        '400': 
+          description: Invalid request 
+          content: 
+            application/json: 
+              schema: 
+                type: object 
+                properties: 
+                  message: 
+                    type: string 
+components: 
+  schemas: 
+    ReadingStats: 
+      required: 
+      - num_of_review
+      - avg_age 
+      - avg_runtime 
+      - total_sale
+      - num_of_ticket
+      properties: 
+        num_of_review: 
+          type: integer 
+          example: 120
+        avg_age: 
+          type: number 
+          example: 20.2
+        total_sales: 
+          type: number 
+          example: 12000.2
+        num_of_ticket: 
+          type: integer 
+          example: 35
+        avg_runtime: 
+          type: number 
+          example: 120.5
+      type: object

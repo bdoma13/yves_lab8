@@ -1,0 +1,93 @@
+openapi: 3.0.0 
+info: 
+  description: This API receives events from a movie theater app 
+  version: "1.0.0" 
+  title: MovieTheater API 
+  contact: 
+    email: hyi10@my.bcit.ca
+tags: 
+  - name: app
+    description: Movie theater app 
+paths: 
+  /movie/ticket: 
+    post: 
+      tags: 
+        - app
+      summary: ticket information
+      operationId: app.ticket_info
+      description: Adds a new ticket information to the system 
+      responses: 
+        '201': 
+          description: item created 
+        '400': 
+          description: 'invalid input, object invalid' 
+      requestBody: 
+        content: 
+          application/json: 
+            schema: 
+              $ref: '#/components/schemas/ticketInfo' 
+        description: ticket info to add 
+  /movie/review: 
+    post: 
+      tags: 
+        - app 
+      summary: Adds a new user review 
+      operationId: app.review_info 
+      description: Adds a new review to the system 
+      responses: 
+        '201': 
+          description: item created 
+        '400': 
+          description: 'invalid input, object invalid' 
+      requestBody: 
+        content: 
+          application/json: 
+            schema: 
+              $ref: '#/components/schemas/reviewInfo' 
+        description: User review to add 
+components: 
+  schemas: 
+    ticketInfo: 
+      required: 
+      - ticket_num 
+      - movie_title
+      - runtime 
+      - price 
+      properties: 
+        ticket_num: 
+          type: string
+          example: d701748f0851 
+        movie_title: 
+          type: string 
+          example: Harry Potter
+        runtime: 
+          type: integer
+          example: 128
+        price: 
+          type: integer 
+          example: 20
+      type: object 
+    reviewInfo: 
+      required: 
+      - review_id 
+      - movie_title
+      - gender 
+      - age
+      - rating 
+      properties: 
+        review_id: 
+          type: string
+          example: 220105201447_A1
+        movie_title: 
+          type: string 
+          example: Harry Potter 
+        gender: 
+          type: string
+          example: Male
+        age: 
+          type: integer
+          example: 22
+        rating: 
+          type: number
+          example: 4.5 
+      type: object

@@ -1,0 +1,125 @@
+openapi: 3.0.0 
+info: 
+  description: This API receives events from a movie theater app 
+  version: "1.0.0" 
+  title: MovieTheater API 
+  contact: 
+    email: hyi10@my.bcit.ca
+tags: 
+  - name: app
+    description: Movie theater app 
+paths: 
+  /movie/ticket: 
+    get: 
+      tags:
+        - app
+      summary: search ticket
+      operationId: app.search_ticket
+      description:
+        search for ticket
+      parameters:
+        - name: timestamp 
+          in: query 
+          description: Limits the number of items on a page 
+          schema: 
+            type: string 
+            format: date-time 
+            example: "2022-02-01 19:10:10"
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ticketInfo'
+        '400':
+          description: bad input parameter
+          content: 
+            application/json: 
+              schema: 
+                type: object 
+                properties: 
+                  message: 
+                    type: string
+  /movie/review: 
+    get: 
+      tags:
+        - app
+      summary: search review
+      operationId: app.search_review
+      description:
+        search for review
+      parameters:
+        - name: timestamp 
+          in: query 
+          description: Limits the number of items on a page 
+          schema: 
+            type: string 
+            format: date-time 
+            example: "2022-02-01 19:10:10"
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/reviewInfo'
+        '400':
+          description: bad input parameter
+          content: 
+            application/json: 
+              schema: 
+                type: object 
+                properties: 
+                  message: 
+                    type: string 
+components: 
+  schemas: 
+    ticketInfo: 
+      required: 
+      - ticket_num 
+      - movie_title
+      - runtime 
+      - price 
+      properties: 
+        ticket_num: 
+          type: string
+          example: d701748f0851 
+        movie_title: 
+          type: string 
+          example: Harry Potter
+        runtime: 
+          type: integer
+          example: 128
+        price: 
+          type: integer 
+          example: 20
+      type: object 
+    reviewInfo: 
+      required: 
+      - review_id 
+      - movie_title
+      - gender 
+      - age
+      - rating 
+      properties: 
+        review_id: 
+          type: string
+          example: 220105201447_A1
+        movie_title: 
+          type: string 
+          example: Harry Potter 
+        gender: 
+          type: string
+          example: Male
+        age: 
+          type: integer
+          example: 22
+        rating: 
+          type: number
+          example: 4.5 
+      type: object

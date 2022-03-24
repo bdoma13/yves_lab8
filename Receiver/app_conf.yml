@@ -1,0 +1,9 @@
+version: 1
+event1:
+  url: http://localhost:8090/movie/ticket
+event2:
+  url: http://localhost:8090/movie/review
+events: 
+  hostname: acit3855-hosung.westus3.cloudapp.azure.com
+  port: 9092 
+  topic: events

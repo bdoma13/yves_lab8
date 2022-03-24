@@ -1,0 +1,6 @@
+2022-03-19 21:04:38,293 - basicLogger - INFO - Retrieving Ticket Item at index 10
+2022-03-19 21:04:39,300 - basicLogger - ERROR - Could not find Ticket Item at index 10
+2022-03-19 21:04:53,834 - basicLogger - INFO - Retrieving Ticket Item at index 1
+2022-03-19 21:04:55,968 - basicLogger - INFO - Found Ticket Item at index 1 with Ticket number b145aigi62
+2022-03-19 21:05:30,071 - basicLogger - INFO - Retrieving review Item at index 1
+2022-03-19 21:05:31,972 - basicLogger - INFO - Found Review Item at index 1 with Review ID 3ba88ef5-f013-490c-9259-22845f241c94

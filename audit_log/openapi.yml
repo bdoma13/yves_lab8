@@ -1,0 +1,135 @@
+openapi: 3.0.0 
+info: 
+  description: This API provides audit info 
+  version: "1.0.0" 
+  title: Food Audit API 
+  contact: 
+    email: bcit@bcit.ca
+ 
+paths: 
+  /ticket_item: 
+    get: 
+      summary: gets a ticket item from history 
+      operationId: app.get_ticket 
+      description: Gets ticket readings from the event store 
+      parameters: 
+        - name: index 
+          in: query 
+          description: Gets the Ticket Item at the index in the event store 
+          schema: 
+            type: integer 
+            example: 10
+      responses: 
+        '200': 
+          description: Successfully returned a Ticket Item event 
+          content: 
+            application/json: 
+              schema: 
+                type: object 
+                items: 
+                  $ref: '#/components/schemas/TicketItem' 
+        '400': 
+          description: Invalid request 
+          content: 
+            application/json: 
+              schema: 
+                type: object 
+                properties: 
+                  message: 
+                    type: string 
+        '404': 
+          description: Not Found 
+          content: 
+            application/json: 
+              schema: 
+                type: object 
+                properties: 
+                  message: 
+                    type: string 
+ 
+  /review_item: 
+    get: 
+      summary: gets a review item from history 
+      operationId: app.get_review 
+      description: Gets drirnk item readings from the event store 
+      parameters: 
+        - name: index 
+          in: query 
+          description: Gets the Review Item at the index in the event store 
+          schema: 
+            type: integer 
+            example: 10
+      responses: 
+        '200': 
+          description: Successfully returned a Review Item event 
+          content: 
+            application/json: 
+              schema: 
+                type: object 
+                items: 
+                  $ref: '#/components/schemas/ReviewItem' 
+        '400': 
+          description: Invalid request 
+          content: 
+            application/json: 
+              schema: 
+                type: object 
+                properties: 
+                  message: 
+                    type: string 
+        '404': 
+          description: Not Found 
+          content: 
+            application/json: 
+              schema: 
+                type: object 
+                properties: 
+                  message: 
+                    type: string 
+ 
+components: 
+  schemas: 
+    TicketItem: 
+      required: 
+      - ticket_num 
+      - movie_title
+      - runtime 
+      - price 
+      properties: 
+        ticket_num: 
+          type: string
+          example: d701748f0851 
+        movie_title: 
+          type: string 
+          example: Harry Potter
+        runtime: 
+          type: integer
+          example: 128
+        price: 
+          type: integer 
+          example: 20
+      type: object 
+    ReviewItem: 
+      required: 
+      - review_id 
+      - movie_title
+      - gender 
+      - age
+      - rating 
+      properties: 
+        review_id: 
+          type: string
+          example: 220105201447_A1
+        movie_title: 
+          type: string 
+          example: Harry Potter 
+        gender: 
+          type: string
+          example: Male
+        age: 
+          type: integer
+          example: 22
+        rating: 
+          type: number
+          example: 4.5 
+      type: object
