@@ -36,21 +36,6 @@ Base.metadata.bind = DB_ENGINE
 DB_SESSION = sessionmaker(bind=DB_ENGINE)
 logger.info(f"Connected to DB. Hostname:{app_config['datastore']['hostname']}, Port:{app_config['datastore']['port']}")
 
-# def ticket_info(body):
-#     session = DB_SESSION()
-
-#     tickinf = ticketInfo(body['ticket_num'],
-#                        body['movie_title'],
-#                        body['runtime'],
-#                        body['price'],
-#                        body['trace_id'])
-
-#     session.add(tickinf)
-#     session.commit()
-#     session.close()
-#     logger.debug(f"Stored event status request with a trace id of {body['trace_id']}")
-#     return NoContent, 201
-
 def search_ticket(timestamp): 
  
     session = DB_SESSION() 
@@ -72,25 +57,6 @@ def search_ticket(timestamp):
                 (timestamp, len(results_list))) 
  
     return results_list, 200
-
-# def review_info(body):
-#     """ Adds a new review to the system """
-#     session = DB_SESSION()
-
-#     review = reviewInfo(body['review_id'],
-#                    body['movie_title'],
-#                    body['gender'],
-#                    body['age'],
-#                    body['rating'],
-#                    body['trace_id'])
-
-#     session.add(review)
-    
-#     session.commit()
-#     session.close()
-#     logger.debug(f"Stored event status request with a trace id of {body['trace_id']}")
-    
-#     return NoContent, 201
 
 def search_review(timestamp): 
  

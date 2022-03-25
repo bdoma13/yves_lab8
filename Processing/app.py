@@ -59,13 +59,13 @@ def populate_stats():
 
         # for reading in readings: 
         #     results.append(reading.to_dict())
-        results = readings.last_updated.replace(microsecond=0)
+        results = readings.to_dict()["last_updated"].replace(microsecond=0)
     except:
-        results = [{'num_of_review': 0, 'avg_age': 0, 'avg_rating': 0, 'total_sale': 0, 'num_of_ticket': 0, 'last_updated': '0001-01-01 01:01:01'}]
+        results = '0001-01-01 01:01:01'
     
     # print(results)
-    review_res = requests.get("http://localhost:8090/movie/review",params={'timestamp': str(results)}, headers = {"content-type": "application/json"})
-    ticket_res = requests.get("http://localhost:8090/movie/ticket",params={'timestamp': str(results)}, headers = {"content-type": "application/json"})
+    review_res = requests.get("http://localhost:8090/movie/review",params={'timestamp': results}, headers = {"content-type": "application/json"})
+    ticket_res = requests.get("http://localhost:8090/movie/ticket",params={'timestamp': results}, headers = {"content-type": "application/json"})
     review = review_res.json()
     ticket = ticket_res.json()
     if len(review) != 0 or len(ticket) != 0:
